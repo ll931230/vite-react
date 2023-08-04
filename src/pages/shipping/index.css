@@ -1,0 +1,32 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shippingCart {
+  border: 1px solid #555;
+  padding: 6px;
+  font-size: 12px;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  border: 1px solid #b69f9f;
+  width: 30%;
+  margin: 8px 8px 0 0;
+  padding: 8px;
+}
+.card:nth-child(3n+3) {
+  margin-right: 0; /* 去除最后一个元素的右侧间隔 */
+}
