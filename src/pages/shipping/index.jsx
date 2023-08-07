@@ -1,47 +1,41 @@
 import {useState} from 'react';
-import FloatingWindow from './FloatingWindow';
+import ShoppingCart from './shoppingCart';
 import mockList from './mockData.jsx'
-import Card from './card'
+import ProductList from './productList'
 import './index.css'
 
 
 function App() {
-  const len = mockList?.length
-  const initialList = [...Array(len)].map(() => 0);
-  const [shippingLists, setShippingLists] = useState(initialList)
+  const [cartItems, setCartItems] = useState([]);
 
-  const clickCard = (i) => {
-    let itemCount = shippingLists[i]
-    const list = initialList.fill(++itemCount, i, i+1)
-    setShippingLists([...list])
-  }
+  const addToCart = (product) => {
+    const existingCartItem = cartItems.find((item) => item.fruitType === product.fruitType);
+
+    if (existingCartItem) {
+      const updatedCart = cartItems.map((item) =>
+        item.fruitType === product.fruitType ? { ...item, quantity: item.quantity + 1 } : item
+      );
+      setCartItems(updatedCart);
+    } else {
+      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    }
+  };
+
+  const removeFromCart = (item) => {
+    const updatedCart = cartItems.map((product) =>
+      product.fruitType === item.fruitType ? { ...product, quantity: product.quantity - 1 } : product
+    ).filter((product) => product.quantity > 0);
+
+    setCartItems(updatedCart);
+  };
 
   return (
     <>
       <div className="header">
         <h3>购物天堂</h3>
-        <FloatingWindow data={shippingLists}></FloatingWindow>
+        <ShoppingCart cartItems={cartItems} removeFromCart={removeFromCart} />
       </div>
-      <div className="content">
-        {mockList?.length > 0 ? (
-          mockList?.map((item, i) => (
-            <div key={item?.name} className="card">
-              <Card data={item} idx={i} onClick={clickCard}></Card>
-            </div>
-          ))
-        ) : (
-          <div
-            style={{
-              height: 300,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            暂无数据
-          </div>
-        )}
-      </div>
+      <ProductList products={mockList} addToCart={addToCart} />
     </>
   )
 }

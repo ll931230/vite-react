@@ -43,3 +43,19 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+
+.productList {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+.productList li {
+  border: 1px solid #b69f9f;
+  width: 30%;
+  margin: 8px 8px 0 0;
+  padding: 8px;
+}
+.productList li:nth-child(3n+3) {
+  margin-right: 0; /* 去除最后一个元素的右侧间隔 */
+}

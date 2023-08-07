@@ -1,0 +1,36 @@
+.floating-window {
+    position: relative;
+    display: inline-block;
+    margin: 20px;
+}
+
+.window-content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 300px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.window-content li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.window-content .price {
+    width: 60%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
+    white-space: nowrap;
+    text-align: left;
+}
+.btn {
+    padding: 2px;
+}
+.buy {
+    width: 100%;
+}
