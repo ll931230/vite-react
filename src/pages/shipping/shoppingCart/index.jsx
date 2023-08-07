@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import CartIcon from '../cartIcon';
 import './index.css';
 import { plus, times } from 'number-precision'
 
-function FloatingWindow({ cartItems, removeFromCart }) {
+function FloatingWindow({ cartItems, removeFromCart, cartItemCount }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleWindow = () => {
@@ -19,7 +20,11 @@ function FloatingWindow({ cartItems, removeFromCart }) {
 
   return (
     <div className="floating-window">
-      <button onClick={toggleWindow}>购物车</button>
+      <button className='shipping' onClick={toggleWindow}>购物车
+        <div className="icons">
+          <CartIcon itemCount={cartItemCount} />
+        </div>
+      </button>
       {isOpen && (
         <ul className="window-content">
           {cartItems?.length > 0 ? (

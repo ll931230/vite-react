@@ -7,6 +7,7 @@ import './index.css'
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const [cartItemCount, setCartItemCount] = useState(0);
 
   const addToCart = (product) => {
     const existingCartItem = cartItems.find((item) => item.fruitType === product.fruitType);
@@ -19,6 +20,8 @@ function App() {
     } else {
       setCartItems([...cartItems, { ...product, quantity: 1 }]);
     }
+
+    setCartItemCount(cartItemCount + 1); // 更新购物车数量
   };
 
   const removeFromCart = (item) => {
@@ -27,13 +30,16 @@ function App() {
     ).filter((product) => product.quantity > 0);
 
     setCartItems(updatedCart);
+
+    setCartItemCount(cartItemCount - 1); // 更新购物车数量
   };
 
   return (
     <>
       <div className="header">
         <h3>购物天堂</h3>
-        <ShoppingCart cartItems={cartItems} removeFromCart={removeFromCart} />
+
+        <ShoppingCart cartItems={cartItems} removeFromCart={removeFromCart} cartItemCount={cartItemCount} />
       </div>
       <ProductList products={mockList} addToCart={addToCart} />
     </>

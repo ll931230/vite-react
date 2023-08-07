@@ -34,3 +34,11 @@
 .buy {
     width: 100%;
 }
+.shipping {
+    position: relative;
+}
+.icons {
+    position: absolute;
+    right: -20px;
+    top: -15px;
+}
